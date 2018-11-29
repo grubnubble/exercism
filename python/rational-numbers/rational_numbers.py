@@ -4,8 +4,7 @@ from __future__ import division
 class Rational(object):
     def __init__(self, numer, denom):
         gcd = self._gcd(int(numer), int(denom))
-        numer = numer/gcd
-        denom = denom/gcd
+        numer, denom = numer/gcd, denom/gcd
         self.numer = numer if denom > 0 else -numer
         self.denom = self._abs(denom)
 
@@ -39,13 +38,11 @@ class Rational(object):
             return Rational(numer, denom)
 
     def __abs__(self):
-        abs_numer = self._abs(self.numer)
-        abs_denom = self._abs(self.denom)
+        abs_numer, abs_denom = self._abs(self.numer), self._abs(self.denom)
         return Rational(abs_numer, abs_denom)
 
     def __pow__(self, power):
-        numer = self.numer ** power
-        denom = self.denom ** power
+        numer, denom = self.numer ** power, self.denom ** power
         return Rational(numer, denom)
 
     def __rpow__(self, base):
@@ -55,8 +52,7 @@ class Rational(object):
         return number if number > 0 else -number
 
     def _gcd(self, numer, denom):
-        numer = self._abs(numer)
-        denom = self._abs(denom)
+        numer, denom = self._abs(numer), self._abs(denom)
         if numer % denom == 0:
             return denom
 
