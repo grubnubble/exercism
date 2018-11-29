@@ -1,5 +1,5 @@
 from __future__ import division
-
+import math
 
 class Rational(object):
     def __init__(self, numer, denom):
@@ -56,8 +56,9 @@ class Rational(object):
         if numer % denom == 0:
             return denom
 
+        upper_bound = math.ceil(denom/2) + 1
         gcd = 1
-        for x in range(2, denom):
+        for x in range(2, upper_bound):
             if numer % x == 0 and denom % x == 0:
                 gcd = x
         return gcd
