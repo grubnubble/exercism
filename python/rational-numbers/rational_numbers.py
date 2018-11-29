@@ -6,12 +6,8 @@ class Rational(object):
         gcd = self._gcd(int(numer), int(denom))
         numer = numer/gcd
         denom = denom/gcd
-        if denom < 0:
-            self.numer = -numer
-            self.denom = -denom
-        else:
-            self.numer = numer
-            self.denom = denom
+        self.numer = numer if denom > 0 else -numer
+        self.denom = self._abs(denom)
 
     def __eq__(self, other):
         return self.numer == other.numer and self.denom == other.denom
@@ -56,10 +52,7 @@ class Rational(object):
         return self._root(base ** self.numer, self.denom)
 
     def _abs(self, number):
-        if number < 0:
-            return -number
-        else:
-            return number
+        return number if number > 0 else -number
 
     def _gcd(self, numer, denom):
         numer = self._abs(numer)
